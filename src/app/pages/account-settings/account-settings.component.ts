@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ElementRef } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { SettingsService } from '../../services/settings.service';
 
 @Component({
   selector: 'app-account-settings',
@@ -8,18 +8,17 @@ import { DOCUMENT } from '@angular/platform-browser';
 })
 export class AccountSettingsComponent implements OnInit {
 
-  constructor( @Inject(DOCUMENT) private _document) { }
+  constructor(public settingsSrv: SettingsService) { }
 
   ngOnInit() {
+    this.setCheck();
   }
 
   changeColor( themeColor: string, ref: ElementRef){
     
+    this.settingsSrv.applyTheme(themeColor);
     this.addCheck(ref);
 
-    let url = `assets/css/colors/${themeColor}.css`;
-
-    this._document.getElementById('mainTheme').setAttribute('href', url);
   }
 
   addCheck(link: any){
@@ -33,4 +32,16 @@ export class AccountSettingsComponent implements OnInit {
     link.classList.add('working');
   }
 
+  setCheck(){
+    let selectors: any = document.getElementsByClassName('selector');
+
+    let theme = this.settingsSrv.settings.theme;
+
+    for (let ref of selectors) {
+      if (ref.getAttribute('data-theme') == theme){
+        ref.classList.add('working');
+        break;
+      }
+    }
+  }
 }
