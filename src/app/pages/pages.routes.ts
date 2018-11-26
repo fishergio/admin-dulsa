@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from "@angular/router";
 import { PagesComponent, DashboardComponent, 
-      ProgressComponent, Graficas1Component, AccountSettingsComponent, PromisesComponent} from './pages.index';
+      ProgressComponent, Graficas1Component, 
+      AccountSettingsComponent, PromisesComponent, RxjsComponent} from './pages.index';
 
 const pagesRoutes: Routes = [
   {
@@ -11,6 +12,7 @@ const pagesRoutes: Routes = [
       { path: 'progress', component: ProgressComponent },
       { path: 'graficas1', component: Graficas1Component },
       { path: 'promises', component: PromisesComponent },
+      { path: 'rxjs', component: RxjsComponent },
       { path: 'account-settings', component: AccountSettingsComponent },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
     ]

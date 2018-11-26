@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { PagesComponent, DashboardComponent, Graficas1Component, 
-  ProgressComponent, PromisesComponent
+  ProgressComponent, AccountSettingsComponent, PromisesComponent, RxjsComponent
 } from './pages.index'
 
 // MODULOS 
@@ -14,11 +14,10 @@ import { PAGES_ROUTES } from '../pages/pages.routes';
 
 //temporal 
 import { IncrementComponent } from '../components/increment/increment.component';
+import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
 
 // ng2-charts
 import { ChartsModule } from 'ng2-charts';
-import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
-import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +29,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     GraficoDonaComponent,
     AccountSettingsComponent,
     PromisesComponent,
+    RxjsComponent,
   ],
   exports: [
     PagesComponent,
