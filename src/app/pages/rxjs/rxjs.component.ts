@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { retry  } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscriber, Subscription } from 'rxjs';
+import { retry, map, filter  } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs',
   templateUrl: './rxjs.component.html',
   styles: []
 })
-export class RxjsComponent implements OnInit {
+export class RxjsComponent implements OnInit, OnDestroy {
+
+  subcription: Subscription;
 
   constructor() { 
-    
-    this.returningObservable().pipe(
+
+    this.subcription = this.returningObservable().pipe(
       retry(2)
     )
     .subscribe( 
@@ -25,30 +27,44 @@ export class RxjsComponent implements OnInit {
   ngOnInit() {
   }
 
-  returningObservable(): Observable<number>{
+  ngOnDestroy(){
+    console.log("Saliendo de la página");
+    this.subcription.unsubscribe();
+  }
 
-    return new Observable(observer => {
+  returningObservable(): Observable<any>{
+
+    return new Observable((observer: Subscriber<any>) => {
 
       let counter = 0;
 
       let interval = setInterval(() => {
 
         counter++;
-        observer.next(counter);
 
-        if (counter == 3) {
+        const outputData = {
+          value: counter
+        }
+        observer.next(outputData);
+
+        /*if (counter == 3) {
           clearInterval(interval);
           observer.complete()
-        }
+        }*/
 
-        if (counter == 2) {
+        /*if (counter == 2) {
           //clearInterval(interval);
           observer.error('Upps!')
-        }
+        }*/
 
       }, 1000)
 
-    })
+    }).pipe(
+      map( (resp) => resp.value ),
+      filter( (value, index) => {
+        return ((value % 2) == 1) ? true : false
+      })
+    )
   }
 
 }
