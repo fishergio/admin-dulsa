@@ -2,7 +2,9 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { PagesComponent, DashboardComponent, Graficas1Component, ProgressComponent } from './pages.index'
+import { PagesComponent, DashboardComponent, Graficas1Component, 
+  ProgressComponent, PromisesComponent
+} from './pages.index'
 
 // MODULOS 
 import { SharedModule } from '../shared/shared.module'
@@ -27,6 +29,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     IncrementComponent,
     GraficoDonaComponent,
     AccountSettingsComponent,
+    PromisesComponent,
   ],
   exports: [
     PagesComponent,
