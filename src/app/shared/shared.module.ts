@@ -1,7 +1,14 @@
 import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+
 import { BreadcrumbsComponent, HeaderComponent, NopagefoundComponent, SidebarComponent } from './shared.index'
+import { RouterModule } from '@angular/router';
 
 @NgModule({
+  imports:[
+    RouterModule,
+    CommonModule,
+  ],
   declarations: [
     BreadcrumbsComponent, 
     HeaderComponent, 
@@ -12,11 +19,9 @@ import { BreadcrumbsComponent, HeaderComponent, NopagefoundComponent, SidebarCom
     BreadcrumbsComponent, 
     HeaderComponent, 
     NopagefoundComponent,
-    SidebarComponent
-  ],
-  imports:[
+    SidebarComponent,
     
-  ]
+  ],
 })
 
 export class SharedModule {}
